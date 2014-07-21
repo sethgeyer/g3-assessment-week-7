@@ -9,7 +9,6 @@ class Application < Sinatra::Application
   def initialize
     super
     @messages = Messages.new(GschoolDatabaseConnection::DatabaseConnection.establish(ENV['RACK_ENV']))
-    @database_connection = GschoolDatabaseConnection::DatabaseConnection.establish(ENV['RACK_ENV'])
   end
 
   get '/' do
