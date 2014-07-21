@@ -1,19 +1,22 @@
 require 'spec_helper'
 
 feature 'Homepage' do
+  before(:each) do
+    visit "/"
+  end
+
   scenario 'Shows the welcome message' do
-    visit '/'
     expect(page).to have_content 'Welcome!'
   end
 
   scenario "Shows user input messages" do
-    visit '/'
     expect(page).to have_content("Messages")
-    fill_in "Name", with: "Seth"
-    fill_in "Message", with: "This is my test message"
-    click_on "Add Message"
-    expect(page).to have_content("This is my test message")
+    create_a_sample_message("Seth")
+    create_a_sample_message("Stu")
+    expect(page).to have_content("This is a Seth test message")
     expect(page).to have_content("Seth")
+    expect(page).to have_content("This is a Stu test message")
+    expect(page).to have_content("Stu")
   end
 
 end

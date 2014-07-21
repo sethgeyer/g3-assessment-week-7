@@ -18,3 +18,11 @@ RSpec.configure do |config|
     database_connection.sql('ROLLBACK')
   end
 end
+
+
+
+def create_a_sample_message(name)
+  fill_in "Name", with: name
+  fill_in "Message", with: "This is a #{name} test message"
+  click_on "Add Message"
+end
